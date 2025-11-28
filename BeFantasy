@@ -1,1 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Monoton&family=Fredericka+the+Great&display=swap" rel="stylesheet">
 
+<title>BeFAntasy</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
+	
+	
+  }
+
+  header {
+    background: #1a1a1a ;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    border-bottom: 2px solid #444;
+    z-index: 1000;
+	font-family: "Lucida Handwriting";
+  }
+ 
+  h1{
+	font-family: 'Carter One', cursive;
+	font-size: 32px;
+	margin-left: 20px;
+	font-weight: bold;
+  }
+  .be {
+	color: #FFD700;
+	  
+  }
+
+  .fantasy {
+	  color: #ADD8E6;  
+  }
+
+  header a { 
+    color: #ffcc00; 
+    text-decoration: none;  
+    padding: 5px 10px; 
+    border: 2px solid #ffcc00;
+    border-radius: 8px;
+	margin-right:30px;
+	font-size:24px;
+	font-family: 'Carter One', cursive;
+  }
+
+ 
+  #home {
+    margin-top: 60px; 
+    padding: 25px 10px;
+  }
+
+  #home h2 {
+	margin-top: 50px; 
+    margin-bottom: 40px;
+    font-size: 2em;
+    color: #ffcc00;
+    text-align: center;
+	font-family:'Carter One', cursive;
+  }
+
+  
+  #home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-items: center;
+	font-weight:bold;
+	text-align: justify;
+}
+
+
+  
+.comic-title {
+	  background-size: cover;
+	  background-position: center;
+	  position: relative;
+	  overflow: hidden;
+	  border-radius: 20px;
+	  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  text-align: center;
+	  font-size: 1.2em;
+	  cursor: pointer;
+	  font-family: "Georgia";
+	  text-shadow: 2px 2px 6px #000;
+	  height: 300px;
+	  width: 300px;
+	}
+
+	.comic-title::before {
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  background-image: inherit;
+	  background-size: cover;
+	  background-position: left;
+	  border-radius: 20px;
+	  transition: transform 0.3s, filter 0.3s;
+	  z-index: -1;
+	}
+
+	.comic-title:hover::before {
+	  transform: scale(1.3);
+	  background-position: center;
+	  filter: blur(1px);
+	}
+
+	  .comic-title:hover {
+		transform: scale(1.05);
+		background: #333;
+		background-size: 190%;
+		background-position: center;
+		
+	  }
+
+  .comic-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto 30px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .comic-panel {
+    width: 100%;
+    margin: 1px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+  }
+
+  .comic-panel img {
+    width: 100%;
+    display: block;
+  }
+
+  .nav-buttons {
+    display: none;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  #next-exit-group {
+    display: inline-flex;
+    gap: 10px; /* distance between Next and Exit */
+}
+
+  .nav-buttons button {
+    background: #ffcc00;
+    border: none;
+    color: #111;
+    font-weight: bold;
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .nav-buttons button:hover {
+    background: #e6b800;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+ <h1>
+  <span class="be">BeFAn</span><span class="fantasy">tasy</span>
+</h1>
+  <a href="#" id="homeBtn">Home</a>
+</header>
+
+<div id="home">
+  <h2>Choose a Topic</h2>
+  <div id="home-grid">
+    <div class="comic-title" data-comic="comic1" style="--bg:url('bbg1.jpg'); background-image: var(--bg);"></div>
+    <div class="comic-title" data-comic="comic2">USE OF RATE </div>
+    <div class="comic-title" data-comic="comic3">VOLUME OF SQUARE <br/>AND RECTANGULAR PYRAMIDS AND<br/> CYLINDER</div>
+    <div class="comic-title" data-comic="comic4">THE REARRANGEMENT <br/> OF A FORMULA TO MAKE<br/> A DIFFERENT VARIABLE THE SUBJECT OF THE FORMULA</div>
+    <div class="comic-title" data-comic="comic5">OUTCOMES FROM EXPERIMENTS</div>
+    <div class="comic-title" data-comic="comic6"></div>
+  </div>
+</div>
+
+<div class="comic-container" id="comicContainer"></div>
+<div class="nav-buttons" id="navButtons">
+  <button id="prevBtn">Previous</button>
+   <div id="next-exit-group">
+    <button id="nextBtn">Next</button>
+    <button id="exitBtn" style="display:none;">Exit</button>
+  </div>
+</div>
+
+<script>
+
+const narrate = (text) => {
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = "en-US";
+
+  // Select a female voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const femaleVoice = voices.find(voice =>
+    voice.name.toLowerCase().includes("female") ||
+    voice.name.toLowerCase().includes("zira") ||
+    voice.name.toLowerCase().includes("samantha") ||
+    voice.name.toLowerCase().includes("susan")
+  );
+  if (femaleVoice) {
+    speech.voice = femaleVoice;
+  }
+
+  window.speechSynthesis.speak(speech);
+};
+
+// Ensure voices are loaded (important in some browsers)
+window.speechSynthesis.onvoiceschanged = () => {};
+
+const comics = {
+  comic1: [
+    { img: 'n1.jpg', text: "In the heart of Enchanted Forest, Luna, a diligent student witch, was searching for the answer to a great challenge: the mystery of Percentage Increase and Decrease!" },
+    { img: 'n2.jpg', text: "This is page 2 narration." },
+    { img: 'n3.jpg', text: "This is page 3 narration." },
+    { img: 'n4.jpg', text: "This is page 4 narration." },
+    { img: 'n5.jpg', text: "This is page 5 narration." },
+    { img: 'n6.jpg', text: "This is page 6 narration." },
+    { img: 'n7.jpg', text: "This is page 7 narration." },
+    { img: 'n8.jpg', text: "This is page 8 narration." }
+  ],
+  
+  comic2: [
+	{}
+  ],
+  comic3: [
+	{}
+  ],
+  comic4: [
+	{}
+  ], 
+  comic5: [
+	{}
+  ], 
+  comic6: [
+	{}
+  ], 
+};
+
+let currentComicPages = [];
+let currentPageIndex = 0;
+
+const home = document.getElementById('home');
+const comicContainer = document.getElementById('comicContainer');
+const navButtons = document.getElementById('navButtons');
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+const exitBtn = document.getElementById('exitBtn');
+
+function loadPage(index) {
+  if (index < 0) index = 0;
+  if (index >= currentComicPages.length) index = currentComicPages.length - 1;
+
+  currentPageIndex = index;
+  comicContainer.innerHTML = '';
+
+  const page = currentComicPages[currentPageIndex];
+	const panel = document.createElement('div');
+	panel.classList.add('comic-panel');
+	const img = document.createElement('img');
+	img.src = page.img; // Use the image from the page object
+	panel.appendChild(img);
+	comicContainer.appendChild(panel);
+
+
+  if (page.text) narrate(page.text);
+  
+  updateButtons();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function updateButtons() {
+  if (currentPageIndex === currentComicPages.length - 1) {
+    exitBtn.style.display = "inline-block";
+  } else {
+    exitBtn.style.display = "none";
+  }
+}
+
+// Home button
+document.getElementById("homeBtn").addEventListener("click", () => {
+  home.style.display = 'block';
+  comicContainer.style.display = 'none';
+  navButtons.style.display = 'none';
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Start reading
+document.querySelectorAll('.comic-title').forEach(el => {
+  el.addEventListener('click', () => {
+    const key = el.dataset.comic;
+    currentComicPages = comics[key];
+    currentPageIndex = 0;
+    loadPage(currentPageIndex);
+    home.style.display = 'none';
+    comicContainer.style.display = 'flex';
+    navButtons.style.display = 'flex';
+  });
+});
+
+// Next page
+nextBtn.addEventListener('click', () => {
+  if (currentPageIndex < currentComicPages.length - 1) 
+    loadPage(currentPageIndex + 1);
+  else alert("You are at the last page!");
+});
+
+// Previous page
+prevBtn.addEventListener('click', () => {
+  if (currentPageIndex > 0) loadPage(currentPageIndex - 1);
+  else alert("You are at the first page!");
+});
+
+// Exit button
+exitBtn.addEventListener('click', () => {
+  home.style.display = 'block';
+  comicContainer.style.display = 'none';
+  navButtons.style.display = 'none';
+});
+</script>
+</body>
+</html>
